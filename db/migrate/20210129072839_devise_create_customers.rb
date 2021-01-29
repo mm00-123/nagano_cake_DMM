@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
 class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
-  def change
-    create_table :customers do |t|
+   def change
+    create_table :members do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :name_family,        null: false, default: ""
+      t.string :name_first,         null: false, default: ""
+      t.string :name_family_kana,   null: false, default: ""
+      t.string :name_first_kana,    null: false, default: ""
+      t.string :postal_code,        null: false, default: ""
+      t.string :address,            null: false, default: ""
+      t.string :phone_number,       null: false, default: ""
+      t.string :is_withdrawal_flag, null: false, default: true
 
       ## Recoverable
       t.string   :reset_password_token
@@ -36,9 +44,9 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
-    add_index :customers, :email,                unique: true
-    add_index :customers, :reset_password_token, unique: true
-    # add_index :customers, :confirmation_token,   unique: true
-    # add_index :customers, :unlock_token,         unique: true
+    add_index :members, :email,                unique: true
+    add_index :members, :reset_password_token, unique: true
+    # add_index :members, :confirmation_token,   unique: true
+    # add_index :members, :unlock_token,         unique: true
   end
 end
