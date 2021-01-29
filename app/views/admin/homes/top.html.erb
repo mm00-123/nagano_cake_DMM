@@ -1,0 +1,21 @@
+<div class="container col-xs-offset-3">
+  <div class="row">
+    <h2 class="admin-top-title">管理者画面</h2>
+  </div>
+</div>
+
+<div class="container col-xs-offset-2">
+  <div class="row">
+    <table>
+      <tr>
+        <th class="admin-top-text col-xs-9">本日の注文件数</th>
+        <td class="admin-top-count col-xs-9">
+          <%= link_to admin_orders_path do %>
+            <%= @daily_order_counts.count %>
+          <% end %>
+          件
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

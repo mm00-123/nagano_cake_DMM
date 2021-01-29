@@ -1,0 +1,102 @@
+<!-- admin order show兼edit -->
+<div class="container">
+  <div class="row">
+    <% if flash[:success] %>
+      <div class="flash">
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+    <div class="col-xs-3 col-xs-offset-1">
+      <h4>注文履歴詳細</h4>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-8">
+      <table>
+        <tr>
+          <th class="col-xs-2">購入者</th>
+            <td class="col-xs-6">
+              <%= link_to admin_member_path(@order.member_id) do %>
+          	    <%= @order.member.name_family %><%= @order.member.name_first %>
+          	  <% end %>
+          	</td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">配送先</th>
+          <td class="col-xs-6">
+            <%= @order.postal_code %><%= @order.address %><br>
+            <%= @order.receiver %>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-xs-2">支払方法</th>
+          <td class="col-xs-6"><%= @order.payment_method %></td>
+        </tr>
+         <tr>
+           <th class="col-xs-2">注文ステータス</th>
+           <td class="col-xs-6">
+            <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
+              <%= f.select :order_status, Order.order_statuses.keys.to_a %>
+              <%= f.submit "更新", class:"btn btn-primary" %>
+            <% end %>
+            </td>
+         </tr>
+
+      </table>
+    </div>
+  </div>
+  <br>
+  <div class ="row">
+    <div class="col-xs-8 ">
+
+      <table class="table">
+        <thead>
+          <tr class="active">
+           <td>商品名</td>
+            <td>単価（税込）</td>
+            <td>数量</td>
+            <td>小計</td>
+            <td>製作ステータス</td>
+            <td></td>
+          </tr>
+        </thead>
+
+        <% @order_items.each do |order_item| %>
+        <tbody>
+          <tr>
+            <td><%= order_item.item.name %></td>
+            <td><%= order_item.tax_included_price %>円</td>
+            <td><%= order_item.quantity %>個</td>
+            <td><%= order_item.tax_included_price * order_item.quantity %>円</td>
+                    <!-- 製作ステータス -->
+            <td>
+              <%= form_for (order_item), url: admin_order_item_path(order_item), method: :patch do |f| %>
+              	<%= f.select :production_status, OrderItem.production_statuses.keys.to_a %>
+                <%= f.hidden_field :order_id, value: order_item.order_id %>
+              	<%= f.submit "更新", class:"btn btn-primary" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% @total = @total + order_item.tax_included_price * order_item.quantity %>
+        <% end %>
+      </table>
+
+    </div>
+    <br>
+    <div class="col-xs-4">
+      <table>
+        <tr>
+          <th>商品合計</th><td><%= @total.floor.to_s(:delimited) %>円</td>
+        </tr>
+        <tr>
+          <th>送料</th><td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th><td><%= (@total + @order.postage).floor.to_s(:delimited) %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

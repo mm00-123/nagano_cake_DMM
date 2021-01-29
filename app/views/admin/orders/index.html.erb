@@ -1,0 +1,65 @@
+<!-- admin order index -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <h3>注文履歴一覧</h3>
+    </div>
+  </div>
+      <br>
+  <div class="row">
+      <div class="col-xs-8 col-xs-offset-1">
+        <table class="table">
+          <thead>
+            <tr class="active">
+              <td class="col-xs-2">
+                購入日時
+              </td>
+              <td class="col-xs-2">
+                購入者
+              </td>
+              <td class="col-xs-2">
+                注文個数
+              </td>
+              <td class="col-xs-2">注文ステータス</td>
+            </tr>
+          </thead>
+
+          <tbody>
+          	<% @orders.each do |order| %>
+            <tr>
+              <td class="col-xs-2">
+                <%= link_to admin_order_path(order) do %>
+                  <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+                <% end %>
+                </td>
+              <td class="col-xs-2">
+                <%= order.member.name_family %><%= order.member.name_first %>
+              </td>
+                         <!-- 総数を出す -->
+              <%
+
+                items = order.order_items.count
+                for i in 1 .. items
+                  quantity = order.order_items[i - 1].quantity
+                  @total_quantity = @total_quantity + quantity
+                end
+
+                %>
+
+              <td class="col-xs-2">
+                <%= @total_quantity %>
+              </td>
+              <td class="col-xs-2">
+                <%= order.order_status %>
+              </td>
+            </tr>
+            <!-- 総数のクリア -->
+              <% @total_quantity = 0 %>
+            <% end %>
+          </tbody>
+
+        </table>
+        <%= paginate @orders %>
+      </div>
+  </div>
+</div>
