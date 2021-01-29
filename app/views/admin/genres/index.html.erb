@@ -1,0 +1,62 @@
+<div class="container">
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-4">
+    <h4>ジャンル一覧表示・追加</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-4">
+    <%= form_for(@genre, url: admin_genres_path, method: :post) do |f| %>
+      <%= f.label :ジャンル %>
+      <%= f.text_field :name %>
+
+      <%= f.radio_button :is_invalid_flag,"true", checked:true %>
+      <%= f.label :is_invalid_flag,:value => "有効" %>
+
+      <%= f.radio_button :is_invalid_flag, "false" %>
+      <%= f.label :is_invalid_flag,:value => "無効" %>
+
+  	  <%= f.submit "追加", class: "btn btn-large btn-primary add-btn" %>
+
+  	<% end %>
+  	</div>
+  </div>
+  <div class="row">
+  <div class="col-xs-10">
+  <div class="table-responsive">
+	<table class="table genre-index-table">
+     <thead>
+       <tr>
+          <th>ジャンル</th>
+          <th class="col-xs-1">状態</th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+
+    <tbody>
+      <!-- each -->
+      <% @genres.each do |genre| %>
+        <tr>
+          <td>
+          	<%= genre.name %>
+          </td>
+          <td>
+          	<% if genre.is_invalid_flag == true %>
+          	有効
+          	<% else %>
+          	無効
+          	<% end %>
+          </td>
+          <td>
+          	<%= link_to "編集する", edit_admin_genre_path(genre),class: "btn btn-large btn-primary edit-btn"  %>
+          </td>
+        </tr>
+        <% end %>
+    <!-- each -->
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

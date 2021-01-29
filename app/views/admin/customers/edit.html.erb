@@ -1,0 +1,69 @@
+<div class="edit-customer-info container">
+  <div class="row">
+  <% if @customer.errors.any? %>
+    <div id="error_explanation">
+      <h2 style="color: red;"><%= @customer.errors.count %>件のエラーが発生しました</h2>
+      <ul style="color: red;">
+        <% @customerr.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <h2><%= @customer.name_family %><%= @customer.name_first %>さんの登録情報編集</h2>
+    <%= form_for(@customer, url: admin_customer_path ) do |f| %>
+      <div class="col-xs-8">
+        <table class="edit-customer-table">
+          <tbody>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">会員ID</td>
+              <td><%= @customer.id %></td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">氏名</td>
+              <td>
+                <%= f.text_field :name_family, autofocus: true %>
+                <%= f.text_field :name_first, autofocus: true %>
+              </td>
+            </tr>
+            <tr class="edit-customerrow">
+              <td class="col-xs-3">フリガナ</td>
+              <td>
+                <%= f.text_field :name_family_kana, autofocus: true %>
+                <%= f.text_field :name_first_kana, autofocus: true %> 
+              </td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">郵便番号</td>
+              <td><%= f.text_field :postal_code, autofocus: true %></td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">住所</td>
+              <td class="edit-customer-address"><%= f.text_field :address, autofocus: true, class: "edit-customer-address" %></td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">電話番号</td>
+              <td><%= f.text_field :phone_number, autofocus: true %></td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">メールアドレス</td>
+              <td><%= f.text_field :email, autofocus: true %></td>
+            </tr>
+            <tr class="edit-customer-row">
+              <td class="col-xs-3">会員ステータス</td>
+              <td>
+                <%= f.radio_button :is_withdrawal_flag, :t, checked: true %>
+                <%= f.label :is_withdrawal_flag, "有効", {value: :true}%>
+                <%= f.radio_button :is_withdrawal_flag, :false %>
+                <%= f.label :is_withdrawal_flag, "退会済み", {value: :false} %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="edit-customer-button">
+           <%= f.submit '編集内容を保存する', class: "btn btn-primary"%>
+        </div>
+      <% end %>
+      </div>
+  </div>
+</div>
