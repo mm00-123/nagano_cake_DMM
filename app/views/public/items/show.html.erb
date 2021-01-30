@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-2 col-xs-offset-2">
+    <%= render "items/genre_search", genres: @genres %>
+  </div>
+  <div class="col-xs-6 item-show">
+    <div class="item_image_show">
+      <%= attachment_image_tag @item, :image, format: "jpeg", width:"300", height:"200", fallback: "no_image.jpg" %>
+    </div>
+    <div class="item-detail">
+      <h3><%= @item.name %></h3>
+      <p><%= @item.introduction %></p>
+      <h4>¥<%= @item_tax_included_price.to_s(:delimited) %>（税込）</h4>
+      <% if customer_signed_in? %>
+        <div class="form-inline">
+          <%= form_for [@customer, @cart_item], url: customerr_cart_items_path(@customer), method: :post do |f| %>
+            <%= f.select :quantity, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], {include_blank: "個数選択"}, class:"form-control" %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.submit "カートに入れる", class:"btn btn-primary" %>
+          <% end %>
+        </div>
+      <% else %>
+        <p>商品を購入するには、会員登録が必要です。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

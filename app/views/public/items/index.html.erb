@@ -1,0 +1,24 @@
+<div class="container item-index-wrapper col-xs-9 col-xs-offset-2">
+  <div class="row">
+    <div class="col-xs-2">
+      <%= render "items/genre_search", genres: @genres %>
+    </div>
+    <div class="col-xs-offset-3">
+      <h2>商品一覧（全<%= @items.count %>件）</h2>
+      <div class="items">
+        <% @items.each do |item| %>
+          <div class="item-box">
+            <%= link_to item_path(item) do %>
+              <%= attachment_image_tag item, :image, format: "jpeg", width:"200", height:"120", fallback: "no_image.jpg" %>
+            <% end %>
+            <h5><%= link_to item.name, item_path(item) %></h5>
+            <p><span>¥</span><%= item.price.to_s(:delimited) %>（税抜）</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-offset-7">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

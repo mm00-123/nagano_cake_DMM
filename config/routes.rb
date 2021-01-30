@@ -19,18 +19,14 @@ Rails.application.routes.draw do
     resources :orders do
       resources :order_items
     end
-    resources :shipping_addresses
+    resources :addresses
   end
-  put "/customers/:id/hide" => "customers#hide", as: 'customer_hide'
-
-  get 'withdrawal' => 'customers#withdrawal'
+  get 'check' => 'public/customes#check'
 
   resources :items
 
-  root 'homes#top'
-  get '/about' => 'homes#about'
-  get '/redirect' => 'homes#redirect'
-  get '/contact-form' => 'homes#contact_form'
+  root 'public/homes#top'
+  get '/about' => 'public/homes#about'
 
 
 
@@ -45,8 +41,7 @@ Rails.application.routes.draw do
   end
 
   get '/customers/about' => 'homes#about', as: 'order_about'
-  post '/customers/:member_id' => 'orders#create', as: 'order_create'
-  get '/customers/:member_id/completion' => 'orders#completion', as: 'customer_order_completion'
+  post '/customers/:customer_id' => 'orders#create', as: 'order_create'
   get '/:genre_id/items' => 'items#genre', as: 'genre_item'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

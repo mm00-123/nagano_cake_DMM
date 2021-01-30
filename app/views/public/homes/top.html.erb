@@ -1,0 +1,48 @@
+<div class="container homes-top-wrapper">
+  <div class="row">
+
+    <div class="homes-top-image col-xs-8 col-xs-offset-1">
+      <div class="homes-top-text col-xs-10 col-xs-offset-1">
+        <p>
+          ようこそ、NAGANO_CAKEへ！😸<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<div class="col-xs-offset-4 homes-top-under-menu-title">
+  <h2>オススメ商品</h2>
+</div>
+<div class="homes-top-under-menu col-xs-8 col-xs-offset-3">
+  <% @items.each do |item| %>
+    <div class="homes-top-box">
+      <table>
+        <thead>
+          <tr>
+            <td class="homes-top-under-image">
+              <%= link_to item_path(item) do %>
+                <%= attachment_image_tag item, :image, :fill, 250, 150, fallback: "no_image.jpg", size:'205x140' %>
+              <% end %>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="homes-top-under-text">
+            <td class="homes-name-wrap"><%= item.name %></td>
+          </tr>
+          <tr class="homes-top-under-text">
+            <td>￥<%= item.price %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+<div class="col-xs-1 col-xs-offset-10">
+    <p><%= link_to 'もっと見る  >', items_path %></p>
+</div>

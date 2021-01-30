@@ -1,0 +1,26 @@
+<div class="shipping-form-table">
+  <%= form_for [customer,addresses] do |f| %>
+    <table>
+      <tbody>
+          <tr>
+            <td><%= f.label :postal_code, "郵便番号（ハイフンなし）", class: "sh-form-td" %></td>
+            <td><%= f.text_field :postal_code, placeholder: "1234567" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :address, "住所", class: "sh-form-td" %></td>
+            <td><%= f.text_field :address, size: "40" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :receiver, "宛名", class: "sh-form-td" %></td>
+            <td><%= f.text_field :receiver %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= f.submit "#{submit}", class: "btn #{color}" %></td>
+          </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

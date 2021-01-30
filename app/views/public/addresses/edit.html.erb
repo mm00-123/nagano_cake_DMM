@@ -1,0 +1,18 @@
+<div class="shipping-contents">
+  <div class="shipping-container">
+    <div id="error_explanation">
+      <% if @shipping_update.errors.any? %>
+        <h3><%= @shipping_update.errors.count %>件のエラーが発生しました</h3>
+        <ul>
+          <% @shipping_update.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="sh-form shipping-edit">
+      <h1>配送先編集</h1>
+      <%= render partial: 'public/address/new', locals: { customer: @customer, shipping: @shipping, submit: "編集する", color: "btn-primary" } %>
+    </div>
+  </div>
+</div>
