@@ -1,51 +1,50 @@
 class Public::AddressesController < ApplicationController
   
-  before_action :current_customer?
+before_action :authenticate_customer!
 
   def index
-    @shipping = Address.new
-    @shippings = Address.all
-    @customer = Customer.find(params[:customer_id])
-  end
-
-  def edit
-    @shipping_update = Address.find_by(id: params[:id], customer_id: params[:customer_id])
-    @shipping = Address.find(params[:id])
-    @shippings = Address.all
-    @customer = Customer.find(params[:customer_id])
+    @address = Address.new
+    @addresses = Address.where(customer_id: current_customer.id)
   end
 
   def create
-    @customer = Customer.find(params[:customer_id])
-    @shipping = Address.new(address_params)
-    @shipping.customer_id = current_customer.id
-    if @shipping.save
-      redirect_to customer__addresses_path
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+    if @address.save
+      redirect_to public_addresses_path, success: "配送先の新規登録が完了しました。"
     else
-      render :index
+      @addresses = Address.where(customer_id: current_customer.id)
+      render action: :index
     end
   end
 
+  def edit
+    @address =Address.find(params[:id])
+  end
+
   def update
-    @customer = Customer.find(params[:member_id])
-    @shipping = Address.find(params[:id])
-    @shipping_update = Address.find_by(id: params[:id], customer_id: params[:customer_id])
-    if @shipping_update.update(address_params)
-      redirect_to customer_addresses_path
+    @address =Address.find(params[:id])
+    if @address.update(addesrs_params)
+      redirect_to public_addresses_path(@address.id)
     else
       render :edit
     end
   end
 
   def destroy
-    Address.find_by(id: params[:id], customer_id: params[:customer_id]).destroy
-    redirect_to customer_addresses_path
+    @address = Address.find(params[:id])
+    @addresses.destroy
+    redirect_to public_addresses_path, success: "配送先の削除が完了しました。"
   end
 
   private
-  def shipping_params
-    params.require(:address).permit(:postal_code, :address, :receiver)
+  
+  def address_params
+    params.require(:address).permit(:postal_code, :address, :name)
   end
 
-  
+  private
+  def address_params
+    params.require(:address).permit(:postal_code, :address, :name)
+  end
 end

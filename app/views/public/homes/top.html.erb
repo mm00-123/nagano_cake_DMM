@@ -25,7 +25,7 @@
         <thead>
           <tr>
             <td class="homes-top-under-image">
-              <%= link_to item_path(item) do %>
+              <%= link_to public_item_path(item) do %>
                 <%= attachment_image_tag item, :image, :fill, 250, 150, fallback: "no_image.jpg", size:'205x140' %>
               <% end %>
             </td>
@@ -44,5 +44,5 @@
   <% end %>
 </div>
 <div class="col-xs-1 col-xs-offset-10">
-    <p><%= link_to 'もっと見る  >', items_path %></p>
+    <p><%= link_to 'もっと見る  >', public_items_path %></p>
 </div>

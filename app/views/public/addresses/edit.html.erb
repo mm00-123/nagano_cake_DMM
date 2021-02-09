@@ -1,18 +1,31 @@
 <div class="shipping-contents">
   <div class="shipping-container">
     <div id="error_explanation">
-      <% if @shipping_update.errors.any? %>
-        <h3><%= @shipping_update.errors.count %>件のエラーが発生しました</h3>
+      <% if @address.errors.any? %>
+        <h3><%= @address.errors.count %>件のエラーが発生しました</h3>
         <ul>
-          <% @shipping_update.errors.full_messages.each do |message| %>
+          <% @address.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
     </div>
-    <div class="sh-form shipping-edit">
-      <h1>配送先編集</h1>
-      <%= render partial: 'public/address/new', locals: { customer: @customer, shipping: @shipping, submit: "編集する", color: "btn-primary" } %>
-    </div>
+      
+      
+<div class="container">
+  <div class="row">
+   <div class="col-xs-4 col-xs-offset-4">
+    <h4>配送先編集</h4>
+        <%= form_for(@address, url: public_addresses_path(@address.id)) do |f| %> 
+         <p> 郵便番号<%= f.text_field :postal_code %> </p>
+         <p> 住所<%= f.text_field :address %> </p>
+         <p> 宛名<%= f.text_field :name %> </p>
+        <div class="row">
+         <div class="col-xs-4 col-xs-offset-4">
+          <%= f.submit '編集する', class: "btn btn-primary" %> 
+         </div>
+        </div>
+        <% end %>
+   </div>
   </div>
 </div>

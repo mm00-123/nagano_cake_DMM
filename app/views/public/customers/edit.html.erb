@@ -1,0 +1,51 @@
+<div>
+  <div>
+  <% if @customer.errors.any? %>
+    <div>
+      <h2><%= @customer.errors.count %>件のエラーが発生しました</h2>
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <h2>登録情報編集</h2>
+   <%= form_for(@customer, url: public_customer_path) do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td>氏名</td>
+            <td>（姓）<%= f.text_field :name_family, autofocus: true %></td>
+            <td>（名）<%= f.text_field :name_first, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td>カナ</td>
+            <td>（セイ）<%= f.text_field :name_family_kana, autofocus: true %></td>
+            <td>（メイ）<%= f.text_field :name_first_kana, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= f.text_field :postal_code, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td >住所</td>
+            <td><%= f.text_field :address, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td><%= f.text_field :phone_number, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td><%= f.submit '編集内容を保存する', class: "btn btn-primary"%></td>
+            <td><%= link_to '退会する', check_path, class: "btn btn-danger" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

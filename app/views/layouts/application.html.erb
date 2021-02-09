@@ -8,10 +8,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-  <%# ヘッダー項目 左ロゴ（root_path), 右各種リンク%>
+
   <% if admin_signed_in? %>
-    <%# 管理者ログイン後 商品一覧、会員一覧、注文履歴一覧、ジャンル一覧、ログアウト %>
-    <%# 検索機能実装 %>
+
       <div class="container">
 
           <div class="header-right row col-xs-offset-3 col-xs-12">
@@ -20,26 +19,26 @@
             <%= link_to '注文履歴一覧', admin_orders_path, class: "btn btn-primary" %>
             <%= link_to 'ジャンル一覧', admin_genres_path, class: "btn btn-primary" %>
             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-primary" %>
-            
+
           </div>
-      </div>  
+      </div>
       <% elsif customer_signed_in? %>
-    <%# 顧客ログイン後 マイページ、商品一覧、カート、ログアウト %>
+
       <div class="container">
           <div class="header-right row col-xs-offset-5">
-            <%= link_to 'マイページ', customer_path(current_customer.id), class: "btn btn-primary head-nav-item" %>
-            <%= link_to '商品一覧', items_path, class: "btn btn-primary" %>
-            <%= link_to 'カート', customer_cart_items_path(current_customer.id), class: "btn btn-primary" %>
+            <%= link_to 'マイページ', public_customer_path(current_customer.id), class: "btn btn-primary head-nav-item" %>
+            <%= link_to '商品一覧', public_items_path, class: "btn btn-primary" %>
+            <%= link_to 'カート', public_cart_items_path(current_customer.id), class: "btn btn-primary" %>
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-primary" %>
           </div>
       </div>
       <% else %>
-    <%# 顧客ログイン前 About、商品一覧、新規登録、ログイン（管理者ログイン前も）%>
+
       <div class="container">
- 
+
           <div class="header-right row col-xs-offset-5">
           <%= link_to 'About', about_path, class: "btn btn-primary" %>
-          <%= link_to '商品一覧', items_path, class: "btn btn-primary" %>
+          <%= link_to '商品一覧', public_items_path, class: "btn btn-primary" %>
           <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-primary" %>
           <%= link_to 'ログイン', new_customer_session_path, class: "btn btn-primary" %>
         </div>

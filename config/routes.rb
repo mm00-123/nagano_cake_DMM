@@ -6,28 +6,37 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, controllers: {
-    sessions: 'admins/sessions'
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
   }
 
 
 
 
 
-  resources :customers do
+  namespace :public do
+    resources :items
+    resources :customers
     resources :cart_items
-    delete 'cart_items' => 'cart_items#destroy_all', as: 'cart_all_item'
+    resources :customers
+    delete 'cart_items' => 'public/cart_items#destroy_all', as: 'cart_all_item'
     resources :orders do
       resources :order_items
     end
     resources :addresses
   end
+  
+  
   get 'check' => 'public/customes#check'
-
-  resources :items
+  
+ 
 
   root 'public/homes#top'
+  
+  
   get '/about' => 'public/homes#about'
-
+  
 
 
 
@@ -40,7 +49,6 @@ Rails.application.routes.draw do
     get '/homes/top' => 'homes#top'
   end
 
-  get '/customers/about' => 'homes#about', as: 'order_about'
   post '/customers/:customer_id' => 'orders#create', as: 'order_create'
   get '/:genre_id/items' => 'items#genre', as: 'genre_item'
 

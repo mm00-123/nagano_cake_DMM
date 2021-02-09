@@ -1,0 +1,39 @@
+<div class ="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offet-1">
+     	<h3>注文情報入力</h3>
+      <div class="order-notice"><%= flash[:danger] %></div>
+      <% if @order.errors.any? %>
+        <% @order.errors.full_messages.each do |message| %>
+          <li class="text-danger"><%= message %></li>
+        <% end %>
+      <% end %>
+      <div class="form-group">
+        <div class="form-group">
+          <%= f.label :支払方法 %><br>
+          <%= f.select :payment_method, Order.payment_methods.keys.to_a, {}, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :お届け先 %><br>
+          <%= f.radio_button :selected,, checked: true %><span>ご自身の住所</span><br>
+          <%= @customer.postal_code %><%= f.hidden_field :postal_code, value: @customer.postal_code %><br>
+          <%= @customer.address %><%= f.hidden_field :address, value: @customer.address %><br>
+          <%= @customer.name_family %><%= f.hidden_field :name_family, value: @customer.name_family %>
+          <%= @customer.name_first %><%= f.hidden_field :name_first, value: @customer.name_first %><br>
+        </div>
+        <div class="form-group">
+          <%= f.radio_button :selected, %><span>新しいお届け先</span><br>
+          <span>郵便番号（ハイフンなし）</span>
+          <%= f.text_field, class:"form-control" %>
+          <span>住所</span>
+          <%= f.text_field, class:"form-control" %>
+          <span>宛名</span>
+          <%= f.text_field , class:"form-control" %>
+        </div>
+
+          <%= f.submit "確認画面へ進む", class:"btn btn-primary" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,9 +9,9 @@ class Admin::OrderedProductsController < ApplicationController
       @order.save(order_item_params)
 
     elsif params[:order_item][:production_status] == "製作完了"
- # 製作完了じゃないデータを取り出す
+
       @production = @order.order_items.where.not(production_status: "製作完了")
-     # 製作完了のデータのみだったら
+
        if !@production.any?
         @order.order_status = "発送準備中"
         @order.save(order_item_params)
@@ -23,13 +23,11 @@ class Admin::OrderedProductsController < ApplicationController
   end
 
   private
-  def order_item_params
-  #   params.require(:order_item).permit(:production_status)
-  # end
+  def order_item_params 
   params.require(:order_item).permit(:order_id, :item_id, :quantity, :tax_inculuded_price, :production_status,
     order_attributes: [:customer_id, :order_status, :postal_code,:receiver, :address, :postage, :payment_method,
      :total, :created_at, :updated_at],
-     members_attributes: [:name_family, :name_first ])
+     customers_attributes: [:name_family, :name_first ])
   end
   
 end

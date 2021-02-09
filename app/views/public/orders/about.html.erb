@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <h3>注文情報確認</h3>
+  </div>
+  <div class="cart_items_main">
+    <table class="cart-items-table">
+      <thead>
+        <tr class="cart-items-tr">
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items_member.each do |cart_item| %>
+          <tr class="cart-items-tr">
+            <td>
+              <%= attachment_image_tag cart_item.item, :image, format: "jpeg", width:"50", height:"40", fallback: "no_image.jpg" %>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= (cart_item.item.price * @tax).floor.to_s(:delimited) %> 円</td>
+            <td><%= cart_item.amount %> 個</td>
+            <td>
+              <% sub_total = cart_item.item.price * @tax *cart_item.amount %>
+              <%= sub_total.floor.to_s(:delimited) %> 円
+            </td>
+          </tr>
+          <% @total = @total + cart_item.item.price *  @tax *cart_item.amount %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="cart-items-main-bottom">
+    <div class="cart-items-shopping"><%= link_to '買い物を続ける', public_items_path, class: "btn btn-primary" %></div>
+    <div class="cart-items-total-table">
+      <table>
+        <tbody>
+          <tr>
+            <td>送料</td>
+            <td><%= @shipping_cost %> 円</td>
+          </tr>
+          <tr>
+            <td>商品合計</td>
+            <td><%= @total.floor.to_s(:delimited) %> 円</td>
+          </tr>
+          <tr>
+            <td>請求金額</td>
+            <td><%= (@total + @shipping_cost).floor.to_s(:delimited) %> 円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <h3>支払方法</h3>
+        <%= @payment_method_enum %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <h3>お届け先</h3>
+        <%= @postal_code %>
+        <%= @address %><br>
+        <%= @receiver %>
+    </div>
+  </div>
+  <%= form_with(model:[@customer, @order], local: true) do |f| %>
+    <%= f.hidden_field :payment_method, value: @payment_method_enum %>
+    <%= f.hidden_field :postal_code, value: @postal_code %>
+    <%= f.hidden_field :address, value: @address %>
+    <%= f.hidden_field :receiver, value: @receiver %>
+    <%= f.hidden_field :total, value: @total %>
+    <%= f.submit "購入を確定する", class:"btn btn-primary" %>
+  <% end %>
+
+</div>

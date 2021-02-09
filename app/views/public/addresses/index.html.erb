@@ -1,42 +1,72 @@
 <div class="shipping-contents">
   <div class="shipping-container">
     <div id="error_explanation">
-      <% if @shipping.errors.any? %>
-        <h3><%= @shipping.errors.count %>件のエラーが発生しました</h3>
+      <% if @address.errors.any? %>
+        <h3><%= @address.errors.count %>件のエラーが発生しました</h3>
         <ul>
-          <% @shipping.errors.full_messages.each do |message| %>
+          <% @address.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
     </div>
-    <div class="sh-form shipping-new">
-      <h1>配送先登録／一覧</h1>
-      <%= render partial: 'new', locals: { customer: @customer, shipping: @shipping, submit: "登録する", color: "btn-success" } %>
+
+<div class="container">
+
+  <div class="row">
+    <div class="page-header">
+      <h1>配送先登録/一覧</h1>
     </div>
-    <div class = "shipping-index-table">
-      <table class="sh-tb">
-        <thead>
-          <tr class="sh-tr">
-            <th>郵便番号</th>
-            <th>住所</th>
-            <th>宛名</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @customer.addresses.each do |shipping| %>
-            <tr class="sh-tr">
-              <td><%= addresses.postal_code.to_s.insert(3, "-") %></td>
-              <td><%= addresses.address %></td>
-              <td><%= addresses.receiver %></td>
-              <td>
-                <%= link_to '編集する', edit_customer_address_path(address.customer,address), class: "btn btn-primary" %>
-                <%= link_to '削除する', customer_address_path(address.customer,address), method: :delete, class: "btn btn-danger" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
+  </div>
+
+
+  <div class="form-horizontal">
+    <%= form_for(@address, url: public_addresses_path) do |f| %>
+
+
+      <div class="form-group">
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "control-label col-xs-3" %>
+        <%= f.text_field :postal_code, autofocus: true, class: "col-xs-3" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :address, "住所", class: "control-label col-xs-3" %>
+        <%= f.text_field :address, class: "col-xs-6" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name, "宛名", class: "control-label col-xs-3" %>
+        <%= f.text_field :name, class: "col-xs-6" %>
+        
+        <div class="col-xs-3">
+        </div>
+        <%= f.submit "登録する", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+  <br>
+
+  <%# 配送先一覧 %>
+  <div class="row">
+    <div class="col-xs-10 table-responsive">
+      <table class="table">
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th></th>
+        <tr>
+        <% @addresses.each do |address| %>
+          <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= aaddress.address %></td>
+            <td><%= address.name %></td>
+            <td>
+              <%= link_to "編集する", edit_public_address_path(addesrs.id), class: "btn btn-primary" %>
+              <%= link_to "削除する", public_addresses_path(addesrs.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
+            </td>
+          <tr>
+        <% end %>
       </table>
     </div>
   </div>

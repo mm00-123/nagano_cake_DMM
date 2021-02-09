@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "item_id", null: false
-    t.integer "quantity", null: false
+    t.integer "amount", null: false
     t.integer "customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,9 +74,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
     t.text "introduction", default: "", null: false
     t.string "image_id", default: "", null: false
     t.integer "price", null: false
-    t.boolean "is_sale_status", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "is_active", default: true, null: false
   end
 
   create_table "order_items", force: :cascade do |t|

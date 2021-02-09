@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label for="is_sale_status">販売ステータス</label>
-        <%= f.select :is_sale_status, [["販売中", true], ["売り切れ", false]], {},class:"form-control" %>
+        <%= f.select :is_active, [["販売中", true], ["売り切れ", false]], {},class:"form-control" %>
       </div>
       <%= f.submit "変更を保存", class:"btn btn-primary" %>
     </div>
