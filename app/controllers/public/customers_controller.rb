@@ -14,6 +14,13 @@ class Public::CustomersController < ApplicationController
   def check
     
   end
+  
+  def out
+    @customer = Customer.find(params[:id])
+    @customer.update(is_active_flag: false)
+    reset_session
+    redirect_to root_path
+  end
 
 
   def update
@@ -29,14 +36,15 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(
-      :name_family,
-      :name_first,
-      :name_family_kana,
-      :name_first_kana,
+      :last_name,
+      :first_name,
+      :last_name_kana,
+      :first_name_kana,
       :postal_code,
       :address,
-      :phone_number,
-      :email
+      :telephone_number,
+      :email,
+      :is_active_flag
     )
   end
 

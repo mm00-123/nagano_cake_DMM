@@ -27,15 +27,15 @@ private
 
 def customer_params
   params.require(:customer).permit(
-    :name_family, 
-    :name_first, 
-    :name_family_kana, 
-    :name_first_kana,
+    :last_name, 
+    :first_name, 
+    :last_name_kana, 
+    :first_name_kana,
     :postal_code,
     :address,
-    :phone_number,
+    :telephone_number,
     :email,
-    :is_withdrawal_flag
+    :is_active_flag
   )
 end
 

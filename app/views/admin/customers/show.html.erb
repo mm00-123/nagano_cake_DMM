@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2><%= @customer.name_family %><%= @customer.name_first %>さんの会員詳細</h2>
+    <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
     <table class="col-xs-3 admin-show-table">
       <tbody>
         <tr class="admin-show-info">
@@ -9,11 +9,11 @@
         </tr>
         <tr class="admin-show-info">
           <td>氏名</td>
-          <td><%= @customer.name_family %><%= @customer.name_first %></td>
+          <td><%= @customer.last_name %><%= @customer.first_name %></td>
         </tr>
         <tr class="admin-show-info">
           <td>フリガナ</td>
-          <td><%= @customer.name_family_kana %><%= @customer.name_first_kana %></td>
+          <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
         </tr>
         <tr class="admin-show-info">
           <td>郵便番号</td>
@@ -25,7 +25,7 @@
         </tr>
         <tr class="admin-show-info">
           <td>電話番号</td>
-          <td><%= @customer.phone_number %></td>
+          <td><%= @customer.telephone_number %></td>
         </tr>
         <tr class="admin-show-info">
           <td>メールアドレス</td>
@@ -34,7 +34,7 @@
       </tbody>
     </table>
     <div class="col-xs-offset-3">
-      <% if @customer.is_withdrawal_flag == "t" %>
+      <% if @customer.is_active == "t" %>
         <div class="admin-flag-true">有効会員</div>
        <% else %>
         <div class="admin-flag-false">退会済み</div>

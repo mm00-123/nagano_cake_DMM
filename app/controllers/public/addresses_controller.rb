@@ -1,5 +1,5 @@
 class Public::AddressesController < ApplicationController
-  
+
 before_action :authenticate_customer!
 
   def index
@@ -24,7 +24,7 @@ before_action :authenticate_customer!
 
   def update
     @address =Address.find(params[:id])
-    if @address.update(addesrs_params)
+    if @address.update(address_params)
       redirect_to public_addresses_path(@address.id)
     else
       render :edit
@@ -33,12 +33,12 @@ before_action :authenticate_customer!
 
   def destroy
     @address = Address.find(params[:id])
-    @addresses.destroy
+    @address.destroy
     redirect_to public_addresses_path, success: "配送先の削除が完了しました。"
   end
 
   private
-  
+
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end

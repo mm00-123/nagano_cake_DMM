@@ -7,7 +7,7 @@
       <br>
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-        <table class="table table-bordered">
+        <table>
           <thead>
             <tr class="active">
               <td class="col-xs-1">
@@ -35,12 +35,12 @@
               <tr>
                 <td>
                 	<br>
-                	<%= order.created_at %>
+                	<%= order.created_at.strftime("%Y/%m/%d") %>
                 </td>
                 <td>
                   <%= order.postal_code %><br>
                     <%= order.address %><br>
-                    <%= order.receiver %>
+                    <%= order.name %>
                 </td>
                 <td>
                   <% order.order_items.each do |order_item| %>
@@ -57,8 +57,7 @@
                   <br>
                   <%= order.order_status %>
                 </td>
-                <td>
-                  <%= link_to "表示する", public_order_path(order.customer.id, order.id), class:"btn btn-primary" %>
+                <td>public_order_path(order.customer.id, order.id), class:"btn btn-primary" %>
                 </td>
               </tr>
             <% end %>

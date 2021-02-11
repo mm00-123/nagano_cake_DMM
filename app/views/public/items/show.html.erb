@@ -6,11 +6,12 @@
     <div class="item-detail">
       <h3><%= @item.name %></h3>
       <p><%= @item.introduction %></p>
-      <h4>¥<%= @item_tax_included_price.to_s(:delimited) %>（税込）</h4>
+      <h4>¥<%= @item_tax_included_price.to_s(:delimited) %>（税抜）</h4>
       <% if customer_signed_in? %>
         <div class="form-inline">
-          <%= form_for [@customer, @cart_item], url: public_cart_items_path(@customer), method: :post do |f| %>
+          <%= form_for @cart_item, url: public_cart_items_path, method: :post do |f| %>
             <%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]], {include_blank: "個数選択"}, class:"form-control" %>
+            <%= f.hidden_field :item_id, value: @item.id %>
             <%= f.submit "カートに入れる", class:"btn btn-primary" %>
           <% end %>
         </div>

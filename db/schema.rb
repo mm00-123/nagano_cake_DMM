@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "postal_code", default: "", null: false
+    t.string "name", default: "", null: false
     t.string "address", default: "", null: false
-    t.string "receiver", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "name_family", default: "", null: false
-    t.string "name_first", default: "", null: false
-    t.string "name_family_kana", default: "", null: false
-    t.string "name_first_kana", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.string "first_name", default: "", null: false
+    t.string "last_name_kana", default: "", null: false
+    t.string "first_name_kana", default: "", null: false
     t.string "postal_code", default: "", null: false
     t.string "address", default: "", null: false
-    t.string "phone_number", default: "", null: false
-    t.string "is_withdrawal_flag", default: "t", null: false
+    t.string "telephone_number", default: "", null: false
+    t.boolean "is_active", default: true, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
     t.integer "order_id", null: false
     t.integer "item_id", null: false
     t.integer "tax_included_price", null: false
-    t.integer "quantity", default: 1, null: false
+    t.integer "amount", default: 1, null: false
     t.integer "production_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "postal_code", default: "", null: false
-    t.string "receiver", default: "", null: false
+    t.string "name", default: "", null: false
     t.string "address", default: "", null: false
     t.integer "postage", default: 800, null: false
     t.integer "payment_method", default: 0, null: false

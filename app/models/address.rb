@@ -1,8 +1,11 @@
 class Address < ApplicationRecord
   belongs_to :customer, optional: true
 
-  validates :postal_code, presence: true
-  validates :address, presence: true
-  validates :name, presence: true
+  with_options presence: true do |d|
+        d.validates :customer_id
+        d.validates :address
+        d.validates :postal_code
+        d.validates :name
+    end
 
 end

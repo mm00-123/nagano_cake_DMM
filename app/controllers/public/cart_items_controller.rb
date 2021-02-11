@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
-  
+
   before_action :authenticate_customer!
-  
+
   def index
     @cart_item = CartItem.new
     @total = 0
@@ -33,14 +33,21 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    CartItem.find_by(id: params[:id], customer_id: params[:customer_id]).destroy
-    redirect_to action: 'index'
+    @cart_items = CartItem.find(params[:id])
+    if @cart_items.destroy
+    redirect_to public_cart_items_path,success: '商品の削除が完了しました。'
+    else
+      render :index, danger: "商品の削除が出来ませんでした"
+    end
   end
 
   def destroy_all
-    customer = Customer.find(params[:customer_id])
-    customer.cart_items.destroy_all
-    redirect_to action: 'index'
+    customer = Customer.find(current_customer.id)
+    if customer.cart_items.destroy_all
+      redirect_to public_cart_items_path,success: 'カート内の商品を全て削除しました。'
+    else
+      render :index, danger: "カート内の商品を削除出来ませんでした。"
+    end
   end
 
   private

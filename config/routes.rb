@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, controllers: {
-    registrations: 'admins/registrations',
     sessions: 'admins/sessions',
-    passwords: 'admins/passwords'
   }
 
 
@@ -20,23 +18,19 @@ Rails.application.routes.draw do
     resources :customers
     resources :cart_items
     resources :customers
-    delete 'cart_items' => 'public/cart_items#destroy_all', as: 'cart_all_item'
+    delete 'cart_items' => 'cart_items#destroy_all', as: 'cart_all_item'
     resources :orders do
       resources :order_items
     end
     resources :addresses
   end
-  
-  
-  get 'check' => 'public/customes#check'
-  
- 
+  put "/customer/:id/out" => "public/customers#out", as: 'customer_out'
 
   root 'public/homes#top'
-  
-  
+
+  get 'check' => 'public/customers#check'
   get '/about' => 'public/homes#about'
-  
+
 
 
 
@@ -50,7 +44,6 @@ Rails.application.routes.draw do
   end
 
   post '/customers/:customer_id' => 'orders#create', as: 'order_create'
-  get '/:genre_id/items' => 'items#genre', as: 'genre_item'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

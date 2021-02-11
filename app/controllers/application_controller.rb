@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   before_action :configure_permitted_parameters,
    if: :devise_controller?
 
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  
+
 
   def destroy_all
     customer = Customer.find(params[:customer_id])
@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name_family, :name_first, :name_family_kana, :name_first_kana, :email, :postal_code, :address, :phone_number, :password ])
 
   end
-  
-  
+
+
 end

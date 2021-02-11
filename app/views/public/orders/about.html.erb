@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @cart_items_member.each do |cart_item| %>
+        <% @cart_items_customer.each do |cart_item| %>
           <tr class="cart-items-tr">
             <td>
               <%= attachment_image_tag cart_item.item, :image, format: "jpeg", width:"50", height:"40", fallback: "no_image.jpg" %>
@@ -63,14 +63,14 @@
       <h3>お届け先</h3>
         <%= @postal_code %>
         <%= @address %><br>
-        <%= @receiver %>
+        <%= @name %>
     </div>
   </div>
   <%= form_with(model:[@customer, @order], local: true) do |f| %>
     <%= f.hidden_field :payment_method, value: @payment_method_enum %>
     <%= f.hidden_field :postal_code, value: @postal_code %>
     <%= f.hidden_field :address, value: @address %>
-    <%= f.hidden_field :receiver, value: @receiver %>
+    <%= f.hidden_field :name, value: @name %>
     <%= f.hidden_field :total, value: @total %>
     <%= f.submit "購入を確定する", class:"btn btn-primary" %>
   <% end %>
