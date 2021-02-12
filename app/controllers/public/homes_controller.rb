@@ -1,6 +1,6 @@
 class Public::HomesController < ApplicationController
   def top
-    @items = Item.where(is_active: true)
+    @items = Item.where(is_sale_status: true)
   end
 
   def about
