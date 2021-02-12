@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.boolean "is_invalid_flag", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,12 +74,14 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
     t.string "image_id", default: "", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "item_id", null: false
-    t.integer "tax_included_price", null: false
+    t.integer "price", null: false
     t.integer "amount", default: 1, null: false
     t.integer "production_status", default: 0, null: false
     t.datetime "created_at", null: false
@@ -93,8 +94,8 @@ ActiveRecord::Schema.define(version: 2021_01_30_044523) do
     t.string "name", default: "", null: false
     t.string "address", default: "", null: false
     t.integer "postage", default: 800, null: false
-    t.integer "payment_method", default: 0, null: false
-    t.integer "total", null: false
+    t.integer "settlement", default: 0, null: false
+    t.integer "total_payment", null: false
     t.integer "order_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

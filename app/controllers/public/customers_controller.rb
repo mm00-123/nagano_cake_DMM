@@ -3,21 +3,21 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    
+
   end
 
   def edit
     @customer = Customer.find(params[:id])
-    
+
   end
 
   def check
-    
+
   end
-  
-  def out
+
+  def active
     @customer = Customer.find(params[:id])
-    @customer.update(is_active_flag: false)
+    @customer.update(is_active: false)
     reset_session
     redirect_to root_path
   end
@@ -44,7 +44,7 @@ class Public::CustomersController < ApplicationController
       :address,
       :telephone_number,
       :email,
-      :is_active_flag
+      :is_active
     )
   end
 

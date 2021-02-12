@@ -33,15 +33,15 @@
                 <% end %>
                 </td>
               <td class="col-xs-2">
-                <%= order.member.name_family %><%= order.member.name_first %>
+                <%= order.customer.last_name %><%= order.customer.first_name %>
               </td>
                          <!-- 総数を出す -->
               <%
 
                 items = order.order_items.count
                 for i in 1 .. items
-                  quantity = order.order_items[i - 1].quantity
-                  @total_quantity = @total_quantity + quantity
+                  amount = order.order_items[i - 1].amount
+                  @total_quantity = @total_quantity + amount
                 end
 
                 %>

@@ -11,12 +11,6 @@
       <%= f.label :ジャンル %>
       <%= f.text_field :name %>
 
-      <%= f.radio_button :is_invalid_flag,"true", checked:true %>
-      <%= f.label :is_invalid_flag,:value => "有効" %>
-
-      <%= f.radio_button :is_invalid_flag, "false" %>
-      <%= f.label :is_invalid_flag,:value => "無効" %>
-
   	  <%= f.submit "追加", class: "btn btn-large btn-primary add-btn" %>
 
   	<% end %>
@@ -42,18 +36,11 @@
           	<%= genre.name %>
           </td>
           <td>
-          	<% if genre.is_invalid_flag == true %>
-          	有効
-          	<% else %>
-          	無効
-          	<% end %>
-          </td>
-          <td>
           	<%= link_to "編集する", edit_admin_genre_path(genre),class: "btn btn-large btn-primary edit-btn"  %>
           </td>
         </tr>
         <% end %>
-    <!-- each -->
+
   </tbody>
 </table>
 </div>

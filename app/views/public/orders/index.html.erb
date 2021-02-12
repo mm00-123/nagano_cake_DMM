@@ -44,14 +44,14 @@
                 </td>
                 <td>
                   <% order.order_items.each do |order_item| %>
-                    <% total = 0 %>
+                    <% total_payment = 0 %>
                     <%= order_item.item.name %>
-                    <% @total = @total + order_item.tax_included_price * order_item.amount %>
+                    <% @total_payment = @total_payment + order_item.price * order_item.amount %>
                   <% end %>
                 </td>
                 <td>
                   <br>
-                   <p><%= (@total + order.postage).floor.to_s(:delimited) %>円</p>
+                   <p><%= (@total_payment + order.postage).floor.to_s(:delimited) %>円</p>
                 </td>
                 <td>
                   <br>

@@ -12,7 +12,7 @@
 
     <div>
       <%= link_to '退会しない', public_customer_path(current_customer), class: "btn btn-primary" %>
-      <%= link_to '退会する',  customer_out_path(current_customer), method: :put, class: "btn btn-danger" %>
+      <%= link_to '退会する',  customer_active_path(current_customer), method: :put, class: "btn btn-danger" %>
     </div>
 
   </div>

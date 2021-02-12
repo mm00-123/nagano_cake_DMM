@@ -1,5 +1,5 @@
 class Admin::OrderedProductsController < ApplicationController
-  
+
   def update
   @order = Order.find(params[:order_item][:order_id])
   @order_item = OrderItem.find(params[:id])
@@ -23,11 +23,11 @@ class Admin::OrderedProductsController < ApplicationController
   end
 
   private
-  def order_item_params 
-  params.require(:order_item).permit(:order_id, :item_id, :quantity, :tax_inculuded_price, :production_status,
-    order_attributes: [:customer_id, :order_status, :postal_code,:receiver, :address, :postage, :payment_method,
-     :total, :created_at, :updated_at],
-     customers_attributes: [:name_family, :name_first ])
+  def order_item_params
+  params.require(:order_item).permit(:order_id, :item_id, :amount, :price, :production_status,
+    order_attributes: [:customer_id, :order_status, :postal_code,:name, :address, :postage, :settlement,
+     :total_payment, :created_at, :updated_at],
+     customers_attributes: [:last_name, :first_name ])
   end
-  
+
 end
