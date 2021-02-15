@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
 
+  protect_from_forgery
+
   def update
     @order = Order.find(params[:id])
     @order_items = @order.order_items
@@ -34,7 +36,7 @@ class Admin::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:customer_id, :order_status, :postal_code,
      :name, :address, :postage, :settlement, :total_payment, :created_at, :updated_at,
-     order_items_attributes: [:order_id, :item_id, :amount, :price, :production_status],
+     order_items_attributes: [:order_id, :item_id, :amount, :price, :production_status ],
      customers_attributes: [:last_name, :first_name ])
   end
 

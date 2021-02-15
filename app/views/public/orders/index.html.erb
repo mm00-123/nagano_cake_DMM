@@ -40,12 +40,12 @@
                 <td>
                   <%= order.postal_code %><br>
                     <%= order.address %><br>
-                    <%= order.name %>
+                    <%= order.name %><br>
                 </td>
                 <td>
                   <% order.order_items.each do |order_item| %>
-                    <% total_payment = 0 %>
-                    <%= order_item.item.name %>
+                    <% total_payment = 0 %><br>
+                    <%= order_item.item.name %><br>
                     <% @total_payment = @total_payment + order_item.price * order_item.amount %>
                   <% end %>
                 </td>
@@ -57,7 +57,8 @@
                   <br>
                   <%= order.order_status %>
                 </td>
-                <td>public_order_path(order.customer.id, order.id), class:"btn btn-primary" %>
+                <td>
+                  <%= link_to "表示する",public_order_path(order.customer.id, order.id), class:"btn btn-primary" %>
                 </td>
               </tr>
             <% end %>

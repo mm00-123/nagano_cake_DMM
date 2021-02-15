@@ -1,4 +1,4 @@
-class Admin::OrderedProductsController < ApplicationController
+class Admin::OrderItemsController < ApplicationController
 
   def update
   @order = Order.find(params[:order_item][:order_id])
@@ -29,5 +29,6 @@ class Admin::OrderedProductsController < ApplicationController
      :total_payment, :created_at, :updated_at],
      customers_attributes: [:last_name, :first_name ])
   end
+
 
 end
