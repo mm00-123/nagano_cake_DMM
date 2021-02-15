@@ -27,7 +27,7 @@ class Admin::OrdersController < ApplicationController
     @total = 0
     @postage = 800
     @customer = Customer.order(params[:id])
-    @production_status = OrderItem.production_status.find(params[:id])
+    @production_status = OrderItem. production_statuses.find(params[:id])
   end
 
   private

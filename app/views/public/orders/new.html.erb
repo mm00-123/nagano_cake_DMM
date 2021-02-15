@@ -4,15 +4,17 @@
      	<h3>注文情報入力</h3>
       <div class="order-notice"><%= flash[:danger] %></div>
       <% if @order.errors.any? %>
+      <ui>
         <% @order.errors.full_messages.each do |message| %>
           <li class="text-danger"><%= message %></li>
         <% end %>
+      </ui>
       <% end %>
       <div class="form-group">
         <div class="form-group">
-          <%= form_with(url: order_about_path(@customer, method: :get, local: true) do |f| %>
+          <%= form_with(url: order_about_path, local: true) do |f| %>
           <%= f.label :支払方法 %><br>
-          <%= f.select :settlement, Order.settlementes.keys.to_a, {}, class:"form-control" %>
+          <%= f.select :settlement, Order.settlements.keys.to_a, {}, class:"form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :お届け先 %><br>
@@ -20,7 +22,7 @@
           <%= @customer.postal_code %><%= f.hidden_field :postal_code, value: @customer.postal_code %><br>
           <%= @customer.address %><%= f.hidden_field :address, value: @customer.address %><br>
           <%= @customer.last_name %><%= f.hidden_field :last_name, value: @customer.last_name %><br>
-          <%= @customer.name %><%= f.hidden_field :name, value: @customer.first_name %><br>
+          <%= @customer.first_name %><%= f.hidden_field :first_name, value: @customer.first_name %><br>
         </div>
 
         <div class="form-group">

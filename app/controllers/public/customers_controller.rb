@@ -15,8 +15,8 @@ class Public::CustomersController < ApplicationController
 
   end
 
-  def active
-    @customer = Customer.find(params[:id])
+  def out
+    @customer = current_customer
     @customer.update(is_active: false)
     reset_session
     redirect_to root_path

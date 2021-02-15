@@ -22,13 +22,16 @@ Rails.application.routes.draw do
     end
     resources :addresses
   end
-  put "/customer/:id/active" => "public/customers#active", as: 'customer_active'
+
+  get 'out' => 'public/customers#out', as: 'customer_out'
 
   root 'public/homes#top'
 
   get 'check' => 'public/customers#check'
   get '/about' => 'public/homes#about'
-  get '/customer/:id/about' => "public/orders#about", as: 'order_about'
+  post 'orders/about' => 'public/orders#about', as: 'order_about'
+  get 'thanx' => 'public/orders#thanx'
+  
 
 
 
@@ -41,8 +44,6 @@ Rails.application.routes.draw do
     resources :items
     get '/homes/top' => 'homes#top'
   end
-
-  post ':customer_id' => 'orders#create', as: 'order_create'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

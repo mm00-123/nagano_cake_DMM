@@ -34,7 +34,7 @@ class Public::OrdersController < ApplicationController
     @total_payment = 0
     @shipping_cost = 800
     @cart_items_customer = CartItem.where(customer_id: current_customer.id)
-    @customer = Customer.find(params[:customer_id])
+    @customer = current_customer
     @tax = 1.1
 
     @settlement_enum = params[:settlement]
@@ -59,7 +59,7 @@ class Public::OrdersController < ApplicationController
       else
         @shipping_address_id = params[:address]
         @postal_code = @customer.addresses.find(address_id).postal_code
-        @address = @customer.addresses.find(ddress_id).address
+        @address = @customer.addresses.find(address_id).address
         @name = @customer.addresses.find(address_id).name
       end
     when "c"
@@ -89,7 +89,7 @@ class Public::OrdersController < ApplicationController
         @order_item.item_id = cart_item.item.id
         @order_item.amount = cart_item.amount
         @order_item.price = (cart_item.item.price * @tax).floor.to_s(:delimited)
-        @order_item.order_status = 0
+        @order_item.production_status = 0
 
         @order_item.save
       end
@@ -101,9 +101,9 @@ class Public::OrdersController < ApplicationController
         @shipping_address.save
       end
 
-      redirect_to customer_order_thanx_path
+      redirect_to thanx_path
     else
-      @customer = Cstomer.find(current_customer.id)
+      @customer = current_customer
       @customer_shipping_addresses = @customer.addresses
       render :new
     end
@@ -117,4 +117,5 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:order_status, :postal_code, :name, :address, :postage, :settlement, :total_payment)
   end
+
 end

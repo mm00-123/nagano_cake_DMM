@@ -34,7 +34,7 @@
       </tbody>
     </table>
     <div class="col-xs-offset-3">
-      <% if @customer.is_active == "t" %>
+      <% if @customer.is_active %>
         <div class="admin-flag-true">有効会員</div>
        <% else %>
         <div class="admin-flag-false">退会済み</div>
@@ -45,6 +45,5 @@
 <div class="container">
   <div class="row">
     <%= link_to '編集する', edit_admin_customer_path(@customer),class:" btn btn-primary admin-show-button" %>
-    <%= link_to '注文履歴一覧を見る', admin_orders_path,class:" btn btn-primary admin-show-button" %>
   </div>
 </div>

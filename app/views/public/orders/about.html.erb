@@ -26,7 +26,7 @@
               <%= sub_total.floor.to_s(:delimited) %> 円
             </td>
           </tr>
-          <% @total = @total + cart_item.item.price *  @tax *cart_item.amount %>
+          <% @total_payment = @total_payment + cart_item.item.price *  @tax *cart_item.amount %>
         <% end %>
       </tbody>
     </table>
@@ -66,7 +66,7 @@
         <%= @name %>
     </div>
   </div>
-  <%= form_with(model:[@customer, @order], local: true) do |f| %>
+  <%= form_with(model: [:public, @order], local: true) do |f| %>
     <%= f.hidden_field :settlement, value: @settlement_enum %>
     <%= f.hidden_field :postal_code, value: @postal_code %>
     <%= f.hidden_field :address, value: @address %>

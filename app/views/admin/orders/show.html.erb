@@ -26,7 +26,7 @@
           <th class="col-xs-2">配送先</th>
           <td class="col-xs-6">
             <%= @order.postal_code %><%= @order.address %><br>
-            <%= @order.receiver %>
+            <%= @order.name %>
           </td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@
             <td><%= order_item.price * order_item.amount %>円</td>
                     <!-- 製作ステータス -->
             <td>
-              <%= form_for (order_item), url: admin_order_item_path(order_item), method: :patch do |f| %>
+              <%= form_for (order_item), url: admin_order_path(order_item), method: :patch do |f| %>
               	<%= f.select :production_status, OrderItem.production_statuses.keys.to_a %>
                 <%= f.hidden_field :order_id, value: order_item.order_id %>
               	<%= f.submit "更新", class:"btn btn-primary" %>
