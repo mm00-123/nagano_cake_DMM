@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about'
   post 'orders/about' => 'public/orders#about', as: 'order_about'
   get 'thanx' => 'public/orders#thanx'
-  
+
+
 
 
 

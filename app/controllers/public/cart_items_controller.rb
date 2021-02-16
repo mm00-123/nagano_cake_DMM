@@ -20,14 +20,14 @@ class Public::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    if @cart_item.update(cart_item_params)
+    if @cart_item.update(amount: params[:cart_item][:amount])
       redirect_to action: 'index'
     else
       @cart_items = CartItem.all
       @total = 0
       @tax = 1.1
       @cart_item_customer = CartItem.where(customer_id: current_customer.id)
-      @customer = Customer.find(params[:customer_id])
+      @customer = current_customer
       render :index
     end
   end

@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
           <%= f.label :お届け先 %><br>
-          <%= f.radio_button :selected, :a, checked: true %><span>ご自身の住所</span><br>
+          <%= f.radio_button :selected, :a %><span>ご自身の住所</span><br>
           <%= @customer.postal_code %><%= f.hidden_field :postal_code, value: @customer.postal_code %><br>
           <%= @customer.address %><%= f.hidden_field :address, value: @customer.address %><br>
           <%= @customer.last_name %><%= f.hidden_field :last_name, value: @customer.last_name %><br>

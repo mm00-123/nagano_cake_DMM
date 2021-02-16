@@ -49,7 +49,7 @@ class Public::OrdersController < ApplicationController
     case @@button_selected
     when "a"
       @postal_code = params[:postal_code]
-      @address = params[:address]
+      @address = current_customer.address
       @name = params[:last_name] + params[:first_name]
     when "b"
       if params[:address].blank?
@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
         @customer_shipping_addresses = @customer.addresses
         render :new
       else
-        @shipping_address_id = params[:address]
+        address_id = params[:address]
         @postal_code = @customer.addresses.find(address_id).postal_code
         @address = @customer.addresses.find(address_id).address
         @name = @customer.addresses.find(address_id).name
@@ -78,6 +78,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    byebug
     @order.customer_id = current_customer.id
     @cart_items_customer = current_customer.cart_items
     @tax = 1.1
