@@ -1,4 +1,4 @@
-<div class="container col-xs-offset-4">
+<div class="container">
   <div class="row">
     <h3 class="sign-in-title">会員の方はこちらからログイン</h3>
     <div style="color: red;">
@@ -22,12 +22,14 @@
   </div>
 </div>
 
-<div class="col-xs-offset-6">
+<div class="container">
+<div class="row">
 <%# パスワード変更リンク追加 %>
   <%= link_to ' => パスワードを忘れた方はこちら', new_customer_password_path %>
 </div>
+</div>
 
-<div class="container col-xs-3 col-xs-offset-4 sign-in-info">
+<div class="container">
   <div class="row">
     <h4>登録がお済みでない方</h4>
     <span class="col-xs-offset-2"><%= link_to 'こちら', new_customer_registration_path %>から新規登録を行ってください</span>

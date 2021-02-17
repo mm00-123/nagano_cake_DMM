@@ -1,4 +1,4 @@
-<div class="cart-items">
+<div class="container">
   <div class="cart-items-container">
     <div id="error_explanation">
       <% if @cart_item.errors.any? %>
@@ -9,7 +9,7 @@
           <% end %>
         </ul>
       <% end %>
-      <h1>ショッピングカート</h1>
+      <h2>ショッピングカート</h2>
       <div class="destroy-all">
       <%= link_to 'カートを空にする', public_cart_all_item_path, method: :delete, class: "btn btn-danger" %>
       </div>

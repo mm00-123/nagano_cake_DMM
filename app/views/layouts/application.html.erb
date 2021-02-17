@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
+ <body>
+    <header id="header" class="navbar navbar-light bg-light">
+      <span class="header__left">LOGO</span>
+      <div class="container">
+        <nav class="nav navbar-light navbar-left"></nav>
+
+
 
   <% if admin_signed_in? %>
-
-      <div class="container">
-
-          <div class="header-right row col-xs-offset-3 col-xs-12">
+          <div class="header-right col-xs-offset-3 col-xs-12">
+            
             <%= link_to '商品一覧', admin_items_path, class: "btn btn-primary" %>
             <%= link_to '会員一覧', admin_customers_path, class: "btn btn-primary" %>
             <%= link_to '注文履歴一覧', admin_orders_path, class: "btn btn-primary" %>
@@ -22,10 +33,10 @@
 
           </div>
       </div>
-      <% elsif customer_signed_in? %>
 
-      <div class="container">
-          <div class="header-right row col-xs-offset-5">
+      <% elsif customer_signed_in? %>
+          <div class="header-right col-xs-offset-5">
+            
             <%= link_to 'マイページ', public_customer_path(current_customer.id), class: "btn btn-primary head-nav-item" %>
             <%= link_to '商品一覧', public_items_path, class: "btn btn-primary" %>
             <%= link_to 'カート', public_cart_items_path(current_customer.id), class: "btn btn-primary" %>
@@ -34,9 +45,8 @@
       </div>
       <% else %>
 
-      <div class="container">
+          <div class="header-right col-xs-offset-5">
 
-          <div class="header-right row col-xs-offset-5">
           <%= link_to 'About', about_path, class: "btn btn-primary" %>
           <%= link_to '商品一覧', public_items_path, class: "btn btn-primary" %>
           <%= link_to '新規登録', new_customer_registration_path, class: "btn btn-primary" %>
@@ -44,17 +54,16 @@
         </div>
       </div>
   <% end %>
-
-
   </header>
 
-  <body>
+
     <div class="main">
        <%= yield %>
     </div>
-  </body>
 
-  <footer>
+
+  <footer class="text-center fixed-bottom">
     <small>©︎DMM WEBCAMP</small>
   </footer>
+ </body>
 </html>

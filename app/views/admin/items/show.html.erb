@@ -1,31 +1,47 @@
-<div class="row">
+<div class="container">
+  <div class="row">
   <h2 class="col-xs-3 col-xs-offset-2">商品詳細</h2>
 </div>
 <div class="row">
   <div class="col-xs-3 col-xs-offset-2">
     <%= attachment_image_tag @item, :image, format: "jpeg", width:"280", height:"200", fallback: "no_image.jpg" %>
   </div>
-  <div class="col-xs-5">
-    <div>
-      <p>商品名<span><%= @item.name %></span></p>
+  <div class="col-xs-8">
+			<div class="table-responsive">
+				<table class="table text-nowrap">
+					<tbody>
+						<tr>
+      <td>商品名 :</td>
+							<td><%= @item.name %></td>
     </div>
     <div>
-      <p>商品説明<span><%= @item.introduction %></span></p>
+      <td>商品説明 :</td>
+							<td><%= @item.introduction %></td>
+    </tr>
+						<tr>
+      <td>ジャンル :</td>
+      <td><%= @item.genre.name %></td>
     </div>
     <div>
-      <p>ジャンル<span><%= @item.genre.name %></span></p>
-    </div>
-    <div>
-      <p>税込価格（税抜価格）<span><%= @item_tax_included_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>） 円</span>
-    </div>
-    <div>
-      <p>販売ステータス
-        <% if @item.is_sale_status == true %>
+      <td>税込価格（税抜価格） :</td>
+      <td><%= @item_tax_included_price.to_s(:delimited) %>（<%= @item.price.to_s(:delimited) %>） 円</td>
+    </tr>
+						<tr>
+      <td>販売ステータス :</td>
+							<td><% if @item.is_sale_status == true %>
           <span>販売中</span>
         <% else %>
           <span>販売停止中</span>
         <% end %>
-    </div>
+        </td>
+    </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="text-right">
     <%= link_to "編集する", edit_admin_item_path(@item), class:"btn btn-primary" %>
+     </div>
   </div>
 </div>

@@ -1,13 +1,16 @@
-<div class="row">
-  <div class="col-xs-8 col-xs-offset-2">
+<div class="container">
+	<div class="row">
     <h2>商品一覧</h2>
     <%= link_to new_admin_item_path do %>
 
     <%= link_to '商品追加', new_admin_item_path, class: "btn btn-primary" %>
-
+    
       <span class="glyphicon glyphicon-plus add-btn" aria-hidden="true"></span>
     <% end %>
-    <table cellpadding="5" class="table table-hover">
+    
+    <div class="container col-xs-6 col-xs-offset-3">
+  <div class="row">
+    <table class="table col-xs-8">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -29,6 +32,8 @@
         </tr>
       <% end %>
     </table>
+      </div>
+</div>
     <%= paginate @items %>
   </div>
 </div>

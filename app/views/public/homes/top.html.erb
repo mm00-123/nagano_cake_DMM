@@ -1,5 +1,5 @@
-<div class="container homes-top-wrapper">
-  <div class="row">
+<div class="row">
+ <div class="col-md-6 offset-md-3">
 
     <div class="homes-top-image col-xs-8 col-xs-offset-1">
       <div class="homes-top-text col-xs-10 col-xs-offset-1">
@@ -15,10 +15,11 @@
   </div>
 </div>
 
-<div class="col-xs-offset-4 homes-top-under-menu-title">
-  <h2>オススメ商品</h2>
-</div>
-<div class="homes-top-under-menu col-xs-8 col-xs-offset-3">
+<div class="container">
+  <div class="row">
+  <h2>新着商品</h2>
+  </div>
+<div class="container">
   <% @items.each do |item| %>
     <div class="homes-top-box">
       <table>

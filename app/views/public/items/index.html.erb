@@ -1,8 +1,7 @@
-<div>
-  <div class="row">
-    <div class="col-xs-2">
+<div class="container">
+  <div>
+   <div>
 
-    <div>
       <h2>商品一覧</h2>
       <div class="items">
         <% @items.each do |item| %>
@@ -16,7 +15,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-xs-offset-7">
+    <div>
       <%= paginate @items %>
     </div>
   </div>

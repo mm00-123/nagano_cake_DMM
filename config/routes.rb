@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resources :customers
 
     resources :items
-    get '/homes/top' => 'homes#top'
+    get '/homes/top' => 'admin/homes#top'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

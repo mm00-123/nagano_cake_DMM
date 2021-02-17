@@ -78,7 +78,6 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    byebug
     @order.customer_id = current_customer.id
     @cart_items_customer = current_customer.cart_items
     @tax = 1.1

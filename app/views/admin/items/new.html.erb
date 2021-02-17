@@ -1,4 +1,5 @@
-<div class="row">
+<div class="container">
+  <div class="row">
   <div class="col-xs-3 col-xs-offset-2">
     <h2>商品新規登録</h2>
     <% if @item_new.errors.any? %>
@@ -8,7 +9,7 @@
     <% end %>
   </div>
 </div>
-<div class="row">
+<div class="col-xs-8">
   <%= form_for(@item_new, url: admin_items_path) do |f| %>
     <div class="col-xs-3 col-xs-offset-2">
       <div class="form-group">
