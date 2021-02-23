@@ -1,7 +1,7 @@
 <div class ="container">
   <div class="row">
     <div class="col-xs-4 col-xs-offet-1">
-     	<h3>注文情報入力</h3>
+     	<h2>注文情報入力</h2>
       <div class="order-notice"><%= flash[:danger] %></div>
       <% if @order.errors.any? %>
       <ui>
@@ -10,8 +10,9 @@
         <% end %>
       </ui>
       <% end %>
-      <div class="form-group">
-        <div class="form-group">
+
+  <div class="container col-xs-6 col-xs-offset-3">
+  　　<div class="row">
           <%= form_with(url: order_about_path, local: true) do |f| %>
           <%= f.label :支払方法 %><br>
           <%= f.select :settlement, Order.settlements.keys.to_a, {}, class:"form-control" %>

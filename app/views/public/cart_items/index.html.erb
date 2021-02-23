@@ -9,14 +9,18 @@
           <% end %>
         </ul>
       <% end %>
+      
+  <div class="container">
+  <div class="row">
       <h2>ショッピングカート</h2>
       <div class="destroy-all">
       <%= link_to 'カートを空にする', public_cart_all_item_path, method: :delete, class: "btn btn-danger" %>
       </div>
     </div>
-    <div class="cart_items_main">
-      <table class="cart-items-table">
-        <thead>
+   <div class="container col-xs-6 col-xs-offset-3">
+  <div class="row">
+    <table class="table col-xs-8">
+      <thead>
           <tr class="cart-items-tr">
             <th>商品名</th>
             <th>単価(税込)</th>

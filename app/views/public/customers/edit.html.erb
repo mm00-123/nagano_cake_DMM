@@ -10,10 +10,16 @@
       </ul>
     </div>
   <% end %>
-  <div class="container">
+  
+ <div class="container">
+  <div class="row">
    <h2>登録情報編集</h2>
    <%= form_for(@customer, url: public_customer_path) do |f| %>
-      <table>
+   </div>
+</div>
+      <div class="container col-xs-6 col-xs-offset-3">
+  <div class="row">
+    <table class="table col-xs-8">
         <tbody>
           <tr>
             <td>氏名</td>
@@ -46,6 +52,8 @@
             <td><%= link_to '退会する', check_path, class: "btn btn-danger" %></td>
           </tr>
         </tbody>
+      </div>
+　　</div>
       </table>
     <% end %>
   </div>

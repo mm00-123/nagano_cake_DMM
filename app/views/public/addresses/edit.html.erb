@@ -15,14 +15,23 @@
 <div class="container">
   <div class="row">
    <div class="col-xs-4 col-xs-offset-4">
-    <h4>配送先編集</h4>
+    <h2>配送先編集</h2>
         <%= form_for(@address, url: public_address_path(@address.id)) do |f| %>
-         <p> 郵便番号<%= f.text_field :postal_code %> </p>
-         <p> 住所<%= f.text_field :address %> </p>
-         <p> 宛名<%= f.text_field :name %> </p>
-        <div class="row">
-         <div class="col-xs-4 col-xs-offset-4">
-          <%= f.submit '保存する', class: "btn btn-primary" %>
+        
+<div class="container col-xs-6 col-xs-offset-3">
+  <div class="row">
+    <table class="table col-xs-8">
+      <tbody>
+          <tr>
+         <td> 郵便番号<%= f.text_field :postal_code %> </td>
+         <td> 住所<%= f.text_field :address %> </td>
+         <td> 宛名<%= f.text_field :name %> </td>
+          <td><%= f.submit '保存する', class: "btn btn-primary" %></td>
+        </tr>
+        </tbody>
+      </div>
+　　</div>
+      </table>
          </div>
         </div>
         <% end %>

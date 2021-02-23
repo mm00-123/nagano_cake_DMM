@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <div>
      <h2>本当に退会しますか？</h2>
 
@@ -12,7 +12,7 @@
 
     <div>
       <%= link_to '退会しない', public_customer_path(current_customer), class: "btn btn-primary" %>
-      <%= link_to '退会する',  customer_out_path(current_customer), class: "btn btn-danger" %>
+      <%= link_to '退会する',  customer_out_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
     </div>
 
   </div>

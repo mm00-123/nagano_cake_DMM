@@ -11,6 +11,24 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+      case resource
+        when Admin
+          admin_homes_top_path
+        when Customer
+          public_customer_path(resource)
+      end
+  end
+
+  def after_sign_out_path_for(resource)
+      case resource
+        when :admin
+          new_admin_session_path
+        when :customer
+          root_path
+      end
+  end
+
 
   def destroy_all
     customer = Customer.find(params[:customer_id])

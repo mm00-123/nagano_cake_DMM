@@ -2,6 +2,7 @@
 
 class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
    def change
+
     create_table :customers do |t|
 
       t.string :email,              null: false, default: ""
@@ -27,5 +28,6 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
 
     add_index :customers, :email,                unique: true
     add_index :customers, :reset_password_token, unique: true
+
    end
 end

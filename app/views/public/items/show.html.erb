@@ -1,9 +1,9 @@
 <div class="container">
-  <div>
+  <div class="row">
     <div class="item_image_show">
       <%= attachment_image_tag @item, :image, format: "jpeg", width:"300", height:"200", fallback: "no_image.jpg" %>
     </div>
-    <div class="item-detail">
+    <div class="container">
       <h3><%= @item.name %></h3>
       <p><%= @item.introduction %></p>
       <h4>¥<%= @item_tax_included_price.to_s(:delimited) %>（税抜）</h4>

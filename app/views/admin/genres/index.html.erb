@@ -8,10 +8,10 @@
   <div class="row">
     <table class="table col-xs-8">
     <%= form_for(@genre, url: admin_genres_path, method: :post) do |f| %>
-      <%= f.label :ジャンル %>
+      <%= f.label :ジャンル名 %>
       <%= f.text_field :name %>
 
-  	  <%= f.submit "追加", class: "btn btn-large btn-primary add-btn" %>
+  	  <%= f.submit "新規登録", class: "btn btn-large btn-primary add-btn" %>
 
   	<% end %>
   	</div>
@@ -23,8 +23,6 @@
      <thead>
        <tr>
           <th>ジャンル</th>
-          <th class="col-xs-1">状態</th>
-          <th colspan="1"></th>
         </tr>
       </thead>
 

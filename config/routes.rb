@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :addresses
   end
 
-  get 'out' => 'public/customers#out', as: 'customer_out'
+  put 'out' => 'public/customers#out', as: 'customer_out'
 
   root 'public/homes#top'
 
@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about'
   post 'orders/about' => 'public/orders#about', as: 'order_about'
   get 'thanx' => 'public/orders#thanx'
+
+  #get 'customers/:id' => 'customers#show', as: :mypage
 
 
 
@@ -43,7 +45,7 @@ Rails.application.routes.draw do
     resources :customers
 
     resources :items
-    get '/homes/top' => 'admin/homes#top'
+    get '/homes/top' => 'homes#top'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

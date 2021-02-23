@@ -1,12 +1,14 @@
 <div class="container">
-    <h3>マイページ</h3>
+  <div class="row">
+    <h2>マイページ</h2>
     <div>
       <span>登録情報</span>
       <%= link_to '編集する', edit_public_customer_path(@customer.id), class: "btn btn-primary" %>
       <%= link_to 'パスワードを変更する', edit_customer_registration_path, class: "btn btn-primary" %>
     </div>
-    <div>
-      <table>
+    <div class="container col-xs-6 col-xs-offset-3">
+  <div class="row">
+    <table class="table col-xs-8">
         <tbody>
           <tr>
             <td>氏名</td>
@@ -43,11 +45,11 @@
       <thead>
         <tr>
           <td><h3>配送先</h3></td>
-          <td><%= link_to '一覧を見る',  public_addresses_path(@customer.id), class: "btn btn-primary" %> </td>
+          <td><%= link_to '一覧を見る',  public_addresses_path(@customer.id), class: "btn btn-primary" %> </td><br>
         </tr>
         <tr>
         <td><h3>注文履歴</h3></td>
-        <td><%= link_to '一覧を見る', public_orders_path(@customer.id), class: "btn btn-primary" %></td>
+        <td><%= link_to '一覧を見る', public_orders_path(@customer.id), class: "btn btn-primary" %></td><br>
         </tr>
       </thead>
     </table>
